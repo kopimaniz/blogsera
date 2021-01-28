@@ -9,5 +9,6 @@ learn create crud api using clean architecture
 
 ## todo
 
-[] crud a post
-[] add authentication
+- [  ] crud a post
+- [  ] add authentication
+- [  ] add logs
