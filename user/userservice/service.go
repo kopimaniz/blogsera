@@ -1,7 +1,7 @@
 package userservice
 
 import (
-	cerror "blogsera/common/error"
+	"blogsera/common/cerror"
 	"blogsera/domain"
 )
 
@@ -50,8 +50,6 @@ func(s *service) Update(ID int, u *domain.User)(*domain.User, error){
   if u.LastName != "" {
     user.LastName = u.LastName
   }
-
-  user.Status = u.Status
 
   return s.r.Update(ID, user)
 }

@@ -1,7 +1,7 @@
 package userrepo
 
 import (
-	cerror "blogsera/common/error"
+	"blogsera/common/cerror"
 	"blogsera/domain"
 	"database/sql"
 )

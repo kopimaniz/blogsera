@@ -1,8 +1,8 @@
 package userhandler
 
 import (
-	cerror "blogsera/common/error"
-	chttp "blogsera/common/http"
+	"blogsera/common/cerror"
+	"blogsera/common/chttp"
 	"blogsera/domain"
 	"encoding/json"
 	"log"
