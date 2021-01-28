@@ -6,3 +6,8 @@ learn create crud api using clean architecture
 
 - create clean architecture
 - handle mysql null
+
+## todo
+
+[] crud a post
+[] add authentication
