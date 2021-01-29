@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"blogsera/config"
@@ -11,7 +11,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func main(){
+func Start(){
   conf := config.LoadMysqlConfig("config/local_mysql.json")
   db := config.NewMysqlDB(conf)
   defer db.Close()
