@@ -6,6 +6,7 @@ import (
 	"blogsera/user/userrepo"
 	"blogsera/user/userservice"
 	"database/sql"
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -24,7 +25,9 @@ func Start(){
     Addr: ":8080",
     Handler: h,
   }
-  server.ListenAndServe()
+
+  log.Println("run server")
+  log.Fatal(server.ListenAndServe())
 }
 
 func userRoute(db *sql.DB, h *mux.Router){
