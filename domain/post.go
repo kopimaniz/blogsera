@@ -8,12 +8,15 @@ type Post struct {
 	Title    string     `json:"title,omitempty"`
 	Content  string     `json:"content,omitempty"`
 	Status   bool       `json:"status,omitempty"`
-	TCreade  *time.Time `json:"t_creade,omitempty"`
+	TCreated  *time.Time `json:"t_creade,omitempty"`
 	TUpdated *time.Time `json:"t_updated,omitempty"`
 }
 
 type PostRepository interface{
   Save(post *Post)(*Post, error)
+  Get(ID int)(*Post, error)
+  GetAll()([]*Post, error)
+  GetByUser(UserID int)([]*Post, error)
 }
 
 type PostService interface{

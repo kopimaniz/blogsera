@@ -2,6 +2,7 @@ package userrepo
 
 import (
 	"blogsera/common/cerror"
+	"blogsera/common/cmysql"
 	"blogsera/domain"
 	"database/sql"
 )
@@ -17,7 +18,7 @@ func NewMysql(db *sql.DB) domain.UserRepository{
 // Get
 func(r *mySqlRepo) Get(ID int)(*domain.User, error){
   var user domain.User
-  var nullTm MysqlNullTIme
+  var nullTm cmysql.MysqlNullTIme
 
   row := r.db.QueryRow("select user_id, username, password, email, first_name, last_name, status, t_created, t_updated from user where user_id=?", ID)
   err := row.Scan(&user.UserID, &user.Username, &user.Password, &user.Email, &user.FirstName, &user.LastName, &user.Status, &user.TCreated, &nullTm)
@@ -40,7 +41,7 @@ func(r *mySqlRepo) Get(ID int)(*domain.User, error){
 
 func(r *mySqlRepo) GetByUsername(username string)(*domain.User, error){
   var user domain.User
-  var nullTm MysqlNullTIme
+  var nullTm cmysql.MysqlNullTIme
 
   row := r.db.QueryRow("select user_id, username, email, first_name, last_name, status, t_created, t_updated from user where username=?", username)
   err := row.Scan(&user.UserID, &user.Username, &user.Email, &user.FirstName, &user.LastName, &user.Status, &user.TCreated, &nullTm)
@@ -64,7 +65,6 @@ func(r *mySqlRepo) GetAll(activeOnly bool)([]*domain.User, error){
   var users []*domain.User
 
   var rows *sql.Rows
-  defer rows.Close()
   var err error
   if activeOnly {
     rows, err = r.db.Query("select user_id, username, email, first_name, last_name, status, t_created, t_updated from user where status=?", true)
@@ -74,10 +74,11 @@ func(r *mySqlRepo) GetAll(activeOnly bool)([]*domain.User, error){
   if err!= nil{
     return nil, err
   }
+  defer rows.Close()
 
   for rows.Next(){
     var user domain.User
-    var nullTm MysqlNullTIme
+    var nullTm cmysql.MysqlNullTIme
 
     err := rows.Scan(&user.UserID, &user.Username, &user.Email, &user.FirstName, &user.LastName, &user.Status,  &user.TCreated, &nullTm)
     if err!= nil {

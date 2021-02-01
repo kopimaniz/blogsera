@@ -9,7 +9,7 @@ type service struct{
   r domain.UserRepository
 }
 
-func New(r domain.UserRepository) *service{
+func New(r domain.UserRepository) domain.UserService{
   return &service{
     r: r,
   }

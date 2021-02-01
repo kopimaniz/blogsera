@@ -19,7 +19,7 @@ type Response struct{
   Data interface{}      `json:"data,omitempty"`
 }
 
-func(r *Response) Json(w http.ResponseWriter){
+func(r *Response) AsJson(w http.ResponseWriter){
   w.Header().Set("Content-Type","application/json")
   json.NewEncoder(w).Encode(r)
 }
